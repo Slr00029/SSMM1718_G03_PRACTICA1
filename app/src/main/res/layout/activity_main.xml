@@ -6,13 +6,6 @@
     android:layout_height="match_parent"
     tools:context="es.ujaen.git.ssmm1718_g03_practica1.MainActivity">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        app:srcCompat="@drawable/ic_logo_uja" />
 
 
     <fragment
@@ -22,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         tools:layout="@layout/fragment_login"
-        android:layout_above="@+id/imageView"
         android:layout_alignParentTop="true" />
 
 </RelativeLayout>
+

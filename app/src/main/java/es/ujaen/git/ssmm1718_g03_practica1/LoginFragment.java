@@ -1,6 +1,7 @@
 package es.ujaen.git.ssmm1718_g03_practica1;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -63,14 +64,41 @@ public class LoginFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
        View fragment = inflater.inflate(R.layout.fragment_login, container, false);
+
         Button connect = (Button) fragment.findViewById(R.id.button_login);
-        final EditText name = (EditText) fragment.findViewById(R.id.editText_login_user);
+        final EditText user = (EditText) fragment.findViewById(R.id.editText_login_user);
+        final EditText pass = (EditText) fragment.findViewById(R.id.editText_login_pass);
+        final EditText ip = (EditText) fragment.findViewById(R.id.editText_login_ip);
+        final EditText port = (EditText) fragment.findViewById(R.id.editText_login_port);
 
         connect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String nombre = name.getText().toString();
-                Toast.makeText(getContext(),nombre,Toast.LENGTH_LONG).show();
+                String s_user = user.getText().toString();
+                String s_pass = pass.getText().toString();
+                String s_ip = ip.getText().toString();
+                String s_port = port.getText().toString();
+                short port2= 0;
+                try {
+                    port2= Short.parseShort(s_port);
+
+                }catch (java.lang.NumberFormatException ex) {
+                    port2 = 6000;
+                }
+
+
+                ConnectionUserData data = new ConnectionUserData(
+                    s_user,s_pass,s_ip,port2
+                );
+
+                Toast.makeText(getContext(),"Hola "+s_user+" "+s_pass+" "+s_ip+": "+s_port   ,Toast.LENGTH_LONG).show();
+
+                Intent nueva = new Intent(getActivity(),ServiceActivity.class);
+                nueva.putExtra(ServiceActivity.PARAM_USER, data.getUser());
+                nueva.putExtra(ServiceActivity.PARAM_PASS, data.getPass());
+                nueva.putExtra(ServiceActivity.PARAM_IP, data.getConnectionIP());
+                nueva.putExtra(ServiceActivity.PARAM_PORT, data.getConnectionPort());
+                startActivity(nueva);
             }
         });
 

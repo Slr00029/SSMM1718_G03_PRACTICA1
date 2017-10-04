@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SSMM1718_G03_PRACTICA1</string>
+    <string name="fragment_login_button">Conectar</string>
+    <string name="fragment_login_description"></string>
+</resources>
